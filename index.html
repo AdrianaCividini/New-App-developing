@@ -15,6 +15,8 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js">
+    </script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -23,10 +25,10 @@
       <div class="weather-app-wrapper">
         <div class="weather-app">
           <div class="overview">
-            <h1>Marsaskala, Malta</h1>
+            <h1 id="city"></h1>
             <ul>
               <li>Friday 05:00</li>
-              <li>Clear</li>
+              <li id="description"></li>
             </ul>
           </div>
           <div class="row">
@@ -38,16 +40,15 @@
                 id="icon"
               />
               <div>
-                <strong id="temperature">17</strong>
+                <strong id="temperature"></strong>
                 <span class="units"> °C | <a href="#">°F</a></span>
               </div>
               </div>
           </div>
           <div class="col-6">
             <ul>
-              <li>Precipitation: 2%</li>
-              <li>Humidity: 81%</li>
-              <li>Wind: 26 km/h</li>
+              <li>Humidity: <span id="humidity"></span>%</li>
+              <li>Wind: <span id="wind"></span> km/h</li>
             </ul>
           </div>
         </div>
