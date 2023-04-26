@@ -23,13 +23,11 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
-  console.log(response.data.condition.icon_url);
   let iconElement = document.querySelector("#icon");
-  iconElement.innerHTML.setAttribute(
-    `https://api.shecodes.io/weather/v1/current?query=${response.data.condition.icon_url}&key=${apiKey}`
-  );
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  iconElement.setAttribute("alt", response.data.condition.icon);
 
-  console.log(response.data);
+  https: console.log(response.data);
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.time * 1000);
 
@@ -55,7 +53,8 @@ function displayTemperature(response) {
 }
 
 let apiKey = "be4f04372f126ocaa2t8a5df316fc3ab";
+let city = "Marsaskala";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?
-query={Marsaskala}&key=${apiKey}&units=metric`;
+query=${city}&key=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayTemperature);
