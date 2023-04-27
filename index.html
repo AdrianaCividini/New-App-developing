@@ -15,8 +15,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js">
-    </script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -27,28 +26,29 @@
           <form id="search-form" class="mb-3">
             <div class="row">
               <div class="col-9">
-            <input 
-            type="search" 
-            placeholder="Type a city..." 
-            class="form-control"
-            id="city-input"
-            autocomplete="off"
-            />
-            </div>
-            <div class="col-3">
-            <input 
-            type="submit" 
-            value="Search" 
-            class="btn btn-primary w-100" />
-            </div>
+                <input
+                  type="search"
+                  placeholder="Type a city..."
+                  class="form-control"
+                  id="city-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-100"
+                />
+              </div>
             </div>
           </form>
           <div class="overview">
             <h1 id="city"></h1>
             <ul>
-              <li>last updated: 
-                <span id="date">
-                </span>
+              <li>
+                last updated:
+                <span id="date"> </span>
               </li>
               <li id="description"></li>
             </ul>
@@ -56,35 +56,32 @@
           <div class="row">
             <div class="col-6">
               <div class="d-flex weather-temperature">
-              <img
-                src=""
-                id="icon"
-                alt="Clear"
-              />
-              <div>
-                <strong id="temperature"></strong>
-                <span class="units"> °C | <a href="#" 
-                  id="fahrenheit-link">°F</a>
-                </span>
+                <img src="" id="icon" alt="Clear" />
+                <div>
+                  <strong id="temperature"></strong>
+                  <span class="units">
+                    °C | <a href="#" id="fahrenheit-link">°F</a>
+                  </span>
+                </div>
               </div>
-              </div>
-          </div>
-          <div class="col-6">
-            <ul>
-              <li>Humidity: <span id="humidity"></span>%</li>
-              <li>Wind: <span id="wind"></span> km/h</li>
-            </ul>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> km/h</li>
+              </ul>
+            </div>
           </div>
         </div>
+        <small>
+          <a
+            href="https://github.com/AdrianaCividini/New-app-developing"
+            target="_blank"
+          >
+            Open-source code</a
+          >, by Adriana Cividini
+        </small>
       </div>
-      <small>
-        <a
-          href="https://github.com/AdrianaCividini/New-app-developing"
-          target="_blank"
-        >
-          Open-source code</a
-        >, by Adriana Cividini
-      </small>
     </div>
     <script src="src/app.js"></script>
   </body>
