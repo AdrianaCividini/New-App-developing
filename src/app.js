@@ -67,7 +67,8 @@ function handleSubmit(event) {
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  alert("Link clicked");
+  let fahrenheitTemperature = (19 * 9) / 5 + 32;
+  alert("fahrenheitTemperature");
 }
 
 search("Marsaskala");
