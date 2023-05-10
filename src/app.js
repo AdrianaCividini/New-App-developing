@@ -25,8 +25,9 @@ function formatDate(timestamp) {
 function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = `<div class="row">`;
   let days = ["Mon", "Tue", "Wed", "Thur"];
+
+  let forecastHTML = `<div class="row">`;
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
@@ -39,50 +40,48 @@ function displayForecast() {
                 width="42"
                 />
               <div class="weather-forecast-temperatures">
-                <span class="weather-forecast-max"> 21° </span
-                ><span class="weather-forecast-min"> 18° </span>
+                <span class="weather-forecast-max"> 21° </span>
+                <span class="weather-forecast-min"> 18° </span>
               </div>
        </div>
        `;
   });
+
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+}
 
 function displayTemperature(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city");
+  let description = document.querySelector("#description");
+  let humidity = document.querySelector("#humidity");
+  let wind = document.querySelector("#wind");
+  let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.temperature.current;
+
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  dateElement.innerHTML = formatDate(response.data.time * 1000);
+  cityElement.innerHTML = response.data.city;
+  description.innerHTML = response.data.condition.description;
+  humidity.innerHTML = response.data.temperature.humidity;
+  wind.innerHTML = Math.round(response.data.wind.speed);
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.icon);
 
-  https: console.log(response.data);
-  let dateElement = document.querySelector("#date");
-  dateElement.innerHTML = formatDate(response.data.time * 1000);
-
-  console.log(response.data.wind.speed);
-  let wind = document.querySelector("#wind");
-  wind.innerHTML = Math.round(response.data.wind.speed);
-
-  console.log(response.data.temperature.humidity);
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = response.data.temperature.humidity;
-
-  console.log(response.data.condition.description);
-  let description = document.querySelector("#description");
-  description.innerHTML = response.data.condition.description;
-
-  console.log(response.data.city);
-  let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = response.data.city;
-
-  console.log(response.data.temperature.current);
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-
-  celsiusTemperature = response.data.temperature.current;
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {
-  let apiKey = "be4f04372f126ocaa2t8a5df316fc3ab";
+  let apiKey = "3fdc8cfbf2d6fa0116c9ae92d3df4f79";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?
 query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
@@ -123,4 +122,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Marsaskala");
-displayForecast();
