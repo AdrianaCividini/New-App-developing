@@ -22,8 +22,7 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast(response) {
-  console.log(response.data);
+function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
 
   let days = ["Mon", "Tue", "Wed", "Thur"];
@@ -53,15 +52,6 @@ function displayForecast(response) {
   console.log(forecastHTML);
 }
 
-function getForecast(coordinates) {
-  console.log(coordinates);
-  let apiKey = "be4f04372f126ocaa2t8a5df316fc3ab";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&
-  unit=metri`;
-  console.log(apiUrl);
-  axios.get(apiUrl).then(displayForecast);
-}
-
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -81,14 +71,11 @@ function displayTemperature(response) {
   wind.innerHTML = Math.round(response.data.wind.speed);
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.icon);
-
-  getForecast(response.data.coordinates);
 }
 
 function search(city) {
   let apiKey = "be4f04372f126ocaa2t8a5df316fc3ab";
-  let apiUrl = `https://api.shecodes.io/weather/
-  v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -127,3 +114,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Marsaskala");
+displayForecast();
