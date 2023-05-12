@@ -38,7 +38,7 @@ function displayForecast(response) {
   let days = ["Mon", "Tue", "Wed", "Thur"];
 
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (forecastDay) {
+  days.forEach(function (forecastDay, index) {
     forecastHTML =
       forecastHTML +
       `
@@ -46,6 +46,7 @@ function displayForecast(response) {
           <div class="weather-forecast-date">${formatDay(
             forecastDay.time
           )}</div>
+            ${index}
               <img
                 src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
                   forecastDay.condition.icon
@@ -54,12 +55,12 @@ function displayForecast(response) {
                 width="42"
                 />
               <div class="weather-forecast-temperatures">
-                <span class="weather-forecast-max"> ${
+                <span class="weather-forecast-max"> ${Math.round(
                   forecastDay.temperature.maximum
-                }° </span>
-                <span class="weather-forecast-min"> ${
+                )}° </span>
+                <span class="weather-forecast-min"> ${Math.round(
                   forecastDay.temperature.minimum
-                }° </span>
+                )}° </span>
               </div>
        </div>
        `;
